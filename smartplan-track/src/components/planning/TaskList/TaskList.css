@@ -1,0 +1,12 @@
+/* src/components/planning/TaskList/TaskList.css */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-list-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+}

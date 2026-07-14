@@ -1,0 +1,254 @@
+/* src/components/settings/NotificationSettings.css */
+.notification-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.notification-settings > h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0;
+}
+
+.settings-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.settings-group h4 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 2px;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.settings-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Status badge */
+.settings-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+}
+.settings-status.granted {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+}
+.settings-status.denied {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger-border);
+}
+
+/* Buttons */
+.btn-request-permission,
+.btn-test-notification,
+.btn-schedule-notifications {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-spring);
+  font-family: inherit;
+}
+
+.btn-request-permission {
+  background: linear-gradient(135deg, var(--accent), #7c6cf0);
+  color: #fff;
+  box-shadow: var(--accent-glow);
+  width: 100%;
+}
+.btn-request-permission:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.settings-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-test-notification {
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-subtle);
+  color: var(--text-primary);
+  flex: 1;
+}
+.btn-test-notification:hover {
+  background: var(--info-bg);
+  border-color: var(--info);
+  color: var(--info);
+  transform: translateY(-2px);
+}
+
+.btn-schedule-notifications {
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-subtle);
+  color: var(--text-primary);
+  flex: 1;
+}
+.btn-schedule-notifications:hover {
+  background: var(--success-bg);
+  border-color: var(--success);
+  color: var(--success);
+  transform: translateY(-2px);
+}
+
+/* Default hint */
+.sound-default-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+/* Sound list */
+.sound-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sound-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all var(--transition-spring);
+  font-family: inherit;
+  width: 100%;
+  text-align: left;
+}
+
+.sound-btn:hover {
+  background: var(--glass-bg-strong);
+  border-color: rgba(88, 86, 214, 0.3);
+  transform: translateX(3px);
+}
+
+.sound-btn.active {
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+
+.sound-btn.previewing {
+  animation: soundPulse 0.5s ease;
+}
+
+@keyframes soundPulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.02) translateX(4px); }
+  100% { transform: scale(1); }
+}
+
+.sound-icon {
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+.sound-btn.previewing .sound-icon {
+  animation: iconBounce 0.4s ease;
+}
+
+@keyframes iconBounce {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.4) rotate(-10deg); }
+  100% { transform: scale(1); }
+}
+
+.sound-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 1px;
+}
+
+.sound-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.sound-btn.active .sound-name {
+  color: var(--accent);
+}
+
+.sound-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.sound-check {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* Info block */
+.settings-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  background: var(--info-bg);
+  border: 1px solid rgba(0, 122, 255, 0.18);
+  border-radius: var(--radius);
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.settings-info p {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}

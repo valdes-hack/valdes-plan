@@ -1,0 +1,156 @@
+/* src/pages/Settings/Settings.css */
+.settings-page {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.settings-page > h1 {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 28px;
+  letter-spacing: -0.03em;
+}
+
+/* Grid */
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+/* Card */
+.settings-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-xs);
+  transition: all var(--transition-spring);
+}
+
+.settings-card:hover {
+  box-shadow: var(--shadow);
+  background: var(--glass-bg-strong);
+  transform: translateY(-2px);
+}
+
+.settings-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.settings-card h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Item row */
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.settings-label {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Setting buttons */
+.settings-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-spring);
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.settings-btn:hover {
+  background: linear-gradient(135deg, var(--accent), #7c6cf0);
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: var(--accent-glow);
+}
+
+.settings-btn.theme-btn:hover {
+  background: linear-gradient(135deg, #1a1a2e, #2d2d4e);
+}
+
+[data-theme="dark"] .settings-btn.theme-btn:hover {
+  background: linear-gradient(135deg, #f5f5f7, #e0e0e8);
+  color: #1a1a2e;
+  box-shadow: 0 4px 16px rgba(245,245,247,0.25);
+}
+
+.settings-btn.lang-btn:hover {
+  background: linear-gradient(135deg, #007aff, #0055cc);
+  box-shadow: 0 4px 16px rgba(0, 122, 255, 0.35);
+}
+
+/* About info */
+.settings-info {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.settings-info p {
+  margin-bottom: 6px;
+}
+
+.settings-info strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.settings-version {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.settings-version span {
+  background: var(--accent-light);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+@media (max-width: 768px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-card {
+    padding: 20px 18px;
+  }
+}

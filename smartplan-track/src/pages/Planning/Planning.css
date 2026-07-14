@@ -1,0 +1,222 @@
+/* src/pages/Planning/Planning.css */
+.planning-page {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* Header */
+.planning-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.planning-header h1 {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.planning-subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+.planning-header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Add button */
+.btn-add-task {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 22px;
+  background: linear-gradient(135deg, var(--accent), #7c6cf0);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-spring);
+  box-shadow: var(--accent-glow);
+  font-family: inherit;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.btn-add-task:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 28px rgba(88, 86, 214, 0.45);
+  filter: brightness(1.07);
+}
+
+.btn-add-task:active {
+  transform: translateY(0) scale(1);
+}
+
+/* Empty state add button */
+.btn-add-task-empty {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 24px;
+  background: linear-gradient(135deg, var(--accent), #7c6cf0);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-spring);
+  box-shadow: var(--accent-glow);
+  font-family: inherit;
+  margin-top: 16px;
+}
+
+.btn-add-task-empty:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(88, 86, 214, 0.45);
+}
+
+/* Controls */
+.planning-controls {
+  margin-bottom: 20px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1.5px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: inherit;
+  box-shadow: var(--shadow-xs);
+}
+
+.filter-btn:hover {
+  background: var(--glass-bg-strong);
+  border-color: rgba(88, 86, 214, 0.3);
+  color: var(--text-primary);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--accent), #7c6cf0);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: var(--accent-glow);
+}
+
+.filter-count {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 1px 7px;
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 20px;
+  text-align: center;
+}
+
+.filter-btn:not(.active) .filter-count {
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+}
+
+/* Task list */
+.task-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Empty state */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 20px;
+  text-align: center;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xs);
+}
+
+.empty-state-icon {
+  font-size: 56px;
+  margin-bottom: 18px;
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+.empty-state h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .planning-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .planning-header-actions {
+    width: 100%;
+  }
+
+  .btn-add-task {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filter-buttons {
+    justify-content: flex-start;
+  }
+
+  .filter-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}

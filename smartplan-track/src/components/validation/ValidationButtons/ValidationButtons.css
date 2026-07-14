@@ -1,0 +1,87 @@
+/* src/components/validation/ValidationButtons/ValidationButtons.css */
+.validation-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.btn-validate {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-spring);
+  font-family: inherit;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.btn-validate:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Done */
+.btn-validate.done {
+  border-color: var(--success-border);
+  color: var(--success);
+}
+.btn-validate.done:hover,
+.btn-validate.done.active {
+  background: var(--success);
+  border-color: var(--success);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(52, 199, 89, 0.35);
+}
+
+/* Incomplete */
+.btn-validate.incomplete {
+  border-color: var(--warning-border);
+  color: var(--warning);
+}
+.btn-validate.incomplete:hover,
+.btn-validate.incomplete.active {
+  background: var(--warning);
+  border-color: var(--warning);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(255, 159, 10, 0.35);
+}
+
+/* Not done */
+.btn-validate.notdone {
+  border-color: var(--danger-border);
+  color: var(--danger);
+}
+.btn-validate.notdone:hover,
+.btn-validate.notdone.active {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(255, 59, 48, 0.35);
+}
+
+.btn-validate svg {
+  font-size: 11px;
+}
+
+@media (max-width: 768px) {
+  .btn-validate {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .btn-validate span {
+    display: none;
+  }
+
+  .btn-validate svg {
+    font-size: 13px;
+  }
+}

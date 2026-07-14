@@ -1,0 +1,89 @@
+/* src/components/statistics/StreakBadge/StreakBadge.css */
+.streak-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 16px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+
+.streak-badge:hover {
+  box-shadow: var(--shadow);
+  background: var(--glass-bg-strong);
+}
+
+.streak-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+}
+
+.streak-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.streak-icon.fire {
+  background: var(--warning-bg);
+  color: var(--warning);
+  box-shadow: 0 2px 8px var(--warning-bg);
+}
+
+.streak-icon.star {
+  background: var(--info-bg);
+  color: var(--info);
+  box-shadow: 0 2px 8px var(--info-bg);
+}
+
+.streak-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.streak-value {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.streak-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.streak-divider {
+  width: 1px;
+  height: 28px;
+  background: var(--border-subtle);
+  margin: 0 4px;
+}
+
+@media (max-width: 480px) {
+  .streak-badge {
+    flex-direction: row;
+    padding: 8px 12px;
+  }
+
+  .streak-item {
+    padding: 0 4px;
+  }
+}
