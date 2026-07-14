@@ -5,48 +5,44 @@
 }
 
 .settings-page > h1 {
-  font-size: 30px;
+  font-size: var(--font-h1);
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 28px;
+  margin-bottom: var(--gap-lg);
   letter-spacing: -0.03em;
 }
 
-/* Grid */
+/* ── Grid ── */
 .settings-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--gap);
 }
 
-/* Card */
+/* ── Card ── */
 .settings-card {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
-  padding: 24px;
+  padding: var(--card-p);
   box-shadow: var(--shadow-xs);
   transition: all var(--transition-spring);
 }
-
 .settings-card:hover {
   box-shadow: var(--shadow);
   background: var(--glass-bg-strong);
   transform: translateY(-2px);
 }
-
-.settings-card.full-width {
-  grid-column: 1 / -1;
-}
+.settings-card.full-width { grid-column: 1 / -1; }
 
 .settings-card h2 {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 18px;
-  padding-bottom: 14px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--border-subtle);
   letter-spacing: -0.02em;
   display: flex;
@@ -54,12 +50,13 @@
   gap: 8px;
 }
 
-/* Item row */
+/* ── Item row ── */
 .settings-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .settings-label {
@@ -68,7 +65,7 @@
   font-weight: 500;
 }
 
-/* Setting buttons */
+/* ── Toggle buttons ── */
 .settings-btn {
   display: inline-flex;
   align-items: center;
@@ -84,8 +81,8 @@
   transition: all var(--transition-spring);
   font-family: inherit;
   white-space: nowrap;
+  min-height: 40px;
 }
-
 .settings-btn:hover {
   background: linear-gradient(135deg, var(--accent), #7c6cf0);
   color: #fff;
@@ -93,33 +90,26 @@
   transform: translateY(-2px);
   box-shadow: var(--accent-glow);
 }
-
 .settings-btn.theme-btn:hover {
   background: linear-gradient(135deg, #1a1a2e, #2d2d4e);
 }
-
 [data-theme="dark"] .settings-btn.theme-btn:hover {
   background: linear-gradient(135deg, #f5f5f7, #e0e0e8);
   color: #1a1a2e;
   box-shadow: 0 4px 16px rgba(245,245,247,0.25);
 }
-
 .settings-btn.lang-btn:hover {
   background: linear-gradient(135deg, #007aff, #0055cc);
-  box-shadow: 0 4px 16px rgba(0, 122, 255, 0.35);
+  box-shadow: 0 4px 16px rgba(0,122,255,0.35);
 }
 
-/* About info */
+/* ── About info ── */
 .settings-info {
   color: var(--text-secondary);
   font-size: 14px;
   line-height: 1.7;
 }
-
-.settings-info p {
-  margin-bottom: 6px;
-}
-
+.settings-info p { margin-bottom: 6px; }
 .settings-info strong {
   color: var(--text-primary);
   font-weight: 600;
@@ -132,25 +122,41 @@
   font-size: 11px;
   color: var(--accent);
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   display: flex;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
 }
-
 .settings-version span {
   background: var(--accent-light);
   padding: 3px 10px;
   border-radius: var(--radius-full);
 }
 
+/* ══════════════════════════
+   RESPONSIVE
+══════════════════════════ */
 @media (max-width: 768px) {
-  .settings-grid {
-    grid-template-columns: 1fr;
-  }
+  .settings-page > h1 { font-size: 24px; margin-bottom: 18px; }
+  .settings-grid { grid-template-columns: 1fr; gap: 12px; }
+  .settings-card { padding: 18px 16px; }
+  .settings-card h2 { font-size: 14px; }
+  .settings-item { gap: 10px; }
+  .settings-btn { font-size: 12px; padding: 8px 14px; }
+}
 
-  .settings-card {
-    padding: 20px 18px;
+@media (max-width: 480px) {
+  .settings-page > h1 { font-size: 22px; }
+  .settings-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
+  .settings-btn { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 360px) {
+  .settings-page > h1 { font-size: 20px; }
+  .settings-card { padding: 14px 12px; }
 }

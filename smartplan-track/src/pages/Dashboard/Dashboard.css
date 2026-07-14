@@ -4,18 +4,18 @@
   margin: 0 auto;
 }
 
-/* Header */
+/* ── Header ── */
 .dashboard-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 32px;
+  margin-bottom: var(--gap-lg);
   flex-wrap: wrap;
-  gap: 16px;
+  gap: var(--gap);
 }
 
 .dashboard-header-left h1 {
-  font-size: 30px;
+  font-size: var(--font-h1);
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.03em;
@@ -24,28 +24,28 @@
 
 .dashboard-subtitle {
   color: var(--text-secondary);
-  font-size: 15px;
+  font-size: var(--font-body);
   margin-top: 4px;
   font-weight: 400;
 }
 
-/* Stats grid */
+/* ── Stats grid ── */
 .dashboard-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: var(--gap);
+  margin-bottom: var(--gap-lg);
 }
 
-/* Chart card */
+/* ── Chart card ── */
 .dashboard-chart {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
-  padding: 28px 28px 20px;
-  margin-bottom: 24px;
+  padding: var(--card-p);
+  margin-bottom: var(--gap-lg);
   box-shadow: var(--shadow);
   transition: box-shadow var(--transition), transform var(--transition);
 }
@@ -56,7 +56,7 @@
 }
 
 .dashboard-chart h2 {
-  font-size: 17px;
+  font-size: var(--font-h2);
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 20px;
@@ -66,9 +66,9 @@
   gap: 8px;
 }
 
-/* Quick actions */
+/* ── Quick actions ── */
 .dashboard-quick-actions h2 {
-  font-size: 17px;
+  font-size: var(--font-h2);
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 14px;
@@ -77,15 +77,15 @@
 
 .quick-actions-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--gap);
 }
 
 .quick-action {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 18px 22px;
+  padding: 16px 20px;
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -96,24 +96,25 @@
   transition: all var(--transition-spring);
   box-shadow: var(--shadow-xs);
   font-weight: 500;
-  font-size: 14px;
+  font-size: var(--font-small);
+  min-height: 60px;
 }
 
 .quick-action:hover {
   background: var(--glass-bg-strong);
-  border-color: rgba(88, 86, 214, 0.35);
+  border-color: rgba(88,86,214,0.35);
   box-shadow: var(--shadow-glow);
   transform: translateY(-3px);
   color: var(--accent);
 }
 
 .quick-action-icon {
-  font-size: 26px;
+  font-size: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   background: var(--accent-light);
   border-radius: var(--radius);
   flex-shrink: 0;
@@ -122,30 +123,79 @@
 
 .quick-action:hover .quick-action-icon {
   background: linear-gradient(135deg, var(--accent), #7c6cf0);
-  font-size: 22px;
   transform: scale(1.05);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
+/* ── Responsive breakpoints ── */
+/* Tablet */
+@media (max-width: 1024px) {
+  .dashboard-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablet narrow */
+@media (max-width: 860px) {
   .dashboard-stats {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* Mobile */
 @media (max-width: 768px) {
   .dashboard-header {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
+    margin-bottom: 20px;
   }
 
   .dashboard-chart {
-    padding: 20px 18px 16px;
+    margin-bottom: 16px;
+  }
+
+  .dashboard-chart h2 {
+    margin-bottom: 14px;
+    font-size: 15px;
+  }
+
+  .quick-actions-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .quick-action {
+    padding: 14px 16px;
+    gap: 10px;
+  }
+
+  .quick-action-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
   }
 }
 
+/* Small mobile */
 @media (max-width: 480px) {
   .dashboard-stats {
     grid-template-columns: 1fr;
+  }
+
+  .quick-actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header-left h1 {
+    font-size: 22px;
+  }
+}
+
+/* Very small */
+@media (max-width: 360px) {
+  .dashboard-header-left h1 {
+    font-size: 20px;
+  }
+  .dashboard-subtitle {
+    font-size: 12px;
   }
 }

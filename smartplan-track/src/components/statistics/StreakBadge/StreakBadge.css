@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 10px 16px;
+  padding: 8px 14px;
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -11,8 +11,9 @@
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-sm);
   transition: all var(--transition);
+  flex-shrink: 0;
+  flex-wrap: nowrap;
 }
-
 .streak-badge:hover {
   box-shadow: var(--shadow);
   background: var(--glass-bg-strong);
@@ -21,31 +22,27 @@
 .streak-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 0 8px;
+  gap: 7px;
+  padding: 0 6px;
 }
 
 .streak-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  font-size: 15px;
+  font-size: 14px;
   flex-shrink: 0;
 }
-
 .streak-icon.fire {
   background: var(--warning-bg);
   color: var(--warning);
-  box-shadow: 0 2px 8px var(--warning-bg);
 }
-
 .streak-icon.star {
   background: var(--info-bg);
   color: var(--info);
-  box-shadow: 0 2px 8px var(--info-bg);
 }
 
 .streak-info {
@@ -53,37 +50,48 @@
   flex-direction: column;
   align-items: flex-start;
 }
-
 .streak-value {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
-
 .streak-label {
   font-size: 10px;
   color: var(--text-muted);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .streak-divider {
   width: 1px;
-  height: 28px;
+  height: 26px;
   background: var(--border-subtle);
-  margin: 0 4px;
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .streak-badge {
+    padding: 7px 12px;
+    gap: 2px;
+  }
+  .streak-item { gap: 5px; padding: 0 4px; }
+  .streak-icon { width: 26px; height: 26px; font-size: 12px; }
+  .streak-value { font-size: 14px; }
+  .streak-label { display: none; } /* hide labels on mobile to save space */
 }
 
 @media (max-width: 480px) {
-  .streak-badge {
-    flex-direction: row;
-    padding: 8px 12px;
-  }
+  .streak-badge { padding: 6px 10px; }
+  .streak-divider { height: 22px; }
+}
 
-  .streak-item {
-    padding: 0 4px;
-  }
+/* When in the header of dashboard, allow wrap */
+.dashboard-header .streak-badge {
+  align-self: flex-start;
 }
