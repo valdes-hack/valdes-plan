@@ -1,0 +1,4 @@
+/* src/pages/Register/Register.css */
+/* Réutilise les classes définies dans Login.css qui sont chargées globalement
+   via les imports dans les pages. On surcharge uniquement ce qui diffère. */
+@import url('../Login/Login.css');
