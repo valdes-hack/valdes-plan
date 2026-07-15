@@ -366,6 +366,15 @@ const useAppStore = create(
             const futureTasks = tasks.filter(t =>
               t.startTime && new Date(t.startTime).getTime() > now
             )
+
+            // Injecter le userId dans le service de notifications
+            // (récupéré depuis useAuthStore si disponible)
+            try {
+              const { useAuthStore } = await import('./useAuthStore')
+              const userId = useAuthStore.getState().user?.id
+              if (userId) notificationService.setUserId(userId)
+            } catch { /* silent */ }
+
             futureTasks.forEach(task => notificationService.scheduleTask(task))
             if (futureTasks.length > 0) {
               console.log(`[Init] ${futureTasks.length} notification(s) reprogrammée(s)`)

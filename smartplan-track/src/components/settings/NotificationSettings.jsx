@@ -1,21 +1,25 @@
 // src/components/settings/NotificationSettings.jsx
 import React, { useState } from 'react'
 import { useNotifications } from '@hooks'
-import { soundService } from '@services/soundService'
+import { soundService }     from '@services/soundService'
 import './NotificationSettings.css'
 
 const NotificationSettings = () => {
   const {
     permission,
-    isSupported,
     isGranted,
+    isSupported,
+    isPushSupported,
+    isSubscribed,
+    isLoading,
     requestPermission,
+    unsubscribe,
     sendTestNotification,
-    scheduleAllNotifications
+    scheduleAllNotifications,
   } = useNotifications()
 
   const [selectedSound, setSelectedSound] = useState(soundService.getCurrentSound())
-  const [previewing, setPreviewing]       = useState(null)
+  const [previewing,    setPreviewing]    = useState(null)
   const sounds = soundService.getAvailableSounds()
 
   const handleSoundChange = (soundId) => {
@@ -38,44 +42,87 @@ const NotificationSettings = () => {
     <div className="notification-settings">
       <h3>🔔 Notifications</h3>
 
-      {/* Status + activation */}
+      {/* ── Statut ── */}
       <div className="settings-group">
         <div className="settings-row">
-          <span className="settings-label">Statut des notifications</span>
+          <span className="settings-label">Statut</span>
           <span className={`settings-status ${isGranted ? 'granted' : 'denied'}`}>
             {isGranted ? '✅ Activées' : '❌ Désactivées'}
           </span>
         </div>
 
-        {!isGranted && (
-          <button className="btn-request-permission" onClick={requestPermission}>
-            🔔 Activer les notifications
-          </button>
-        )}
-
-        {isGranted && (
-          <div className="settings-actions">
-            <button className="btn-test-notification" onClick={sendTestNotification}>
-              🔔 Tester
-            </button>
-            <button className="btn-schedule-notifications" onClick={scheduleAllNotifications}>
-              📅 Programmer tous les rappels
-            </button>
+        {isPushSupported && isGranted && (
+          <div className="settings-row">
+            <span className="settings-label">Push background</span>
+            <span className={`settings-status ${isSubscribed ? 'granted' : 'denied'}`}>
+              {isSubscribed ? '📡 Abonné' : '📵 Non abonné'}
+            </span>
           </div>
         )}
       </div>
 
-      {/* Sélecteur de son par défaut */}
+      {/* ── Activation ── */}
+      <div className="settings-group">
+        {!isGranted ? (
+          <button
+            className="btn-request-permission"
+            onClick={requestPermission}
+            disabled={isLoading}
+          >
+            {isLoading ? '⏳ Activation...' : '🔔 Activer les notifications'}
+          </button>
+        ) : (
+          <>
+            {isPushSupported && !isSubscribed && (
+              <button
+                className="btn-request-permission"
+                onClick={requestPermission}
+                disabled={isLoading}
+              >
+                {isLoading ? '⏳ Abonnement...' : '📡 Activer les push background'}
+              </button>
+            )}
+
+            <div className="settings-actions">
+              <button
+                className="btn-test-notification"
+                onClick={sendTestNotification}
+                disabled={isLoading}
+              >
+                🔔 Tester
+              </button>
+              <button
+                className="btn-schedule-notifications"
+                onClick={scheduleAllNotifications}
+                disabled={isLoading}
+              >
+                📅 Programmer les rappels
+              </button>
+              {isSubscribed && (
+                <button
+                  className="btn-test-notification"
+                  onClick={unsubscribe}
+                  disabled={isLoading}
+                  style={{ color: 'var(--danger)', borderColor: 'var(--danger-border)' }}
+                >
+                  📵 Se désabonner
+                </button>
+              )}
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* ── Son par défaut ── */}
       <div className="settings-group">
         <h4>🔊 Son par défaut</h4>
         <p className="sound-default-hint">
-          Ce son sera pré-sélectionné lors de la création d'une tâche.
-          Vous pouvez choisir un son différent par tâche.
+          Son pré-sélectionné à la création d'une tâche. Chaque tâche peut avoir son propre son.
         </p>
         <div className="sound-list">
           {sounds.map((sound) => {
-            const isActive    = selectedSound === sound.id
-            const isPreviewing = previewing === sound.id
+            const isActive     = selectedSound === sound.id
+            const isPreviewing = previewing    === sound.id
             return (
               <button
                 key={sound.id}
@@ -96,10 +143,11 @@ const NotificationSettings = () => {
         </div>
       </div>
 
-      {/* Info */}
+      {/* ── Info ── */}
       <div className="settings-info">
-        <p>💡 Les sons fonctionnent sans connexion internet — tout est synthétisé localement.</p>
-        <p>📱 Sur iOS, les notifications Push nécessitent iOS 16.4+.</p>
+        <p>📱 Push background : visible même app fermée et écran verrouillé.</p>
+        <p>💡 Sons synthétiques — fonctionnent hors ligne, aucun fichier requis.</p>
+        <p>🍎 iOS : push nécessite d'installer l'app via "Ajouter à l'écran d'accueil" (iOS 16.4+).</p>
       </div>
     </div>
   )
